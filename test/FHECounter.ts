@@ -36,6 +36,12 @@ describe("FHECounter", function () {
     ({ fheCounterContract, fheCounterContractAddress } = await deployFixture());
   });
 
+  it("should be deployed", async function () {
+    console.log(`FHECounter has been deployed at address ${fheCounterContractAddress}`);
+    // Test the deployed address is valid
+    expect(ethers.isAddress(fheCounterContractAddress)).to.eq(true);
+  });
+
   it("encrypted count should be uninitialized after deployment", async function () {
     const encryptedCount = await fheCounterContract.getCount();
     // Expect initial count to be bytes32(0) after deployment,
